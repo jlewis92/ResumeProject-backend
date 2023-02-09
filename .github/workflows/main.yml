@@ -20,7 +20,12 @@ jobs:
         aws-region: ${{ secrets.AWS_SECRET_ACCESS_REGION }}
         role-to-assume: arn:aws:iam::${{ secrets.AWS_SECRET_ACCESS_ACCOUNT_ID }}:role/${{ secrets.AWS_SECRET_ACCESS_GITUB_RUNNER_ROLE }}
         role-session-name: GithubActionsSession
-
     - run: aws sts get-caller-identity
+    - name: Setup terraform
+      uses: hashicorp/setup-terraform@v2.0.3    
+    - name: run plan
+      run: terraform plan
+    - name: run apply
+      run: terraform apply -auto-approve
       
     

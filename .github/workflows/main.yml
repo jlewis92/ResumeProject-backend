@@ -15,6 +15,7 @@ jobs:
       TF_VAR_account_id: ${{ secrets.AWS_SECRET_ACCESS_ACCOUNT_ID }}
       TF_VAR_table_name: ${{ secrets.AWS_SECRET_ACCESS_TABLE_NAME }}
     permissions:
+      pull-requests: write
       id-token: write
       contents: write
     runs-on: windows-latest

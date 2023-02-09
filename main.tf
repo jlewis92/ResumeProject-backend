@@ -17,6 +17,5 @@ variable "table_name" {
 }
 
 provider "aws" {
-  region  = var.region
-  profile = "default"
+  region = var.region
 }

@@ -22,10 +22,15 @@ jobs:
         role-session-name: GithubActionsSession
     - run: aws sts get-caller-identity
     - name: Setup terraform
+      env:
+        TF_VAR_region: ${{ secrets.AWS_SECRET_ACCESS_REGION }}
+        TF_VAR_account_id: ${{ secrets.AWS_SECRET_ACCESS_ACCOUNT_ID }}
+        TF_VAR_table_name: ${{ secrets.AWS_SECRET_ACCESS_TABLE_NAME }}
       uses: hashicorp/setup-terraform@v2.0.3    
-    - name: run plan
-      run: terraform plan
-    - name: run apply
+    - run: terraform init
+    - id: plan
+      run: terraform plan -no-color
+    - id: apply
       run: terraform apply -auto-approve
       
     

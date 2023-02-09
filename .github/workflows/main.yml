@@ -7,6 +7,9 @@ on:
 jobs:
   my_job:
     name: test python and push terraform
+    permissions:
+      id-token: write
+      contents: write
     runs-on: windows-latest
     
     steps:

@@ -9,7 +9,7 @@ from UpdateVisitorCount import *
 
 
 class TestSum(unittest.TestCase):
-    
+
     @mock.patch.dict(os.environ, {"AWS_DEFAULT_REGION": "SOME_VALUE"})
     def test_isRunningInAws_isTrue(self):
         self.assertTrue(isRunningInAws())
@@ -39,7 +39,7 @@ class TestSum(unittest.TestCase):
         item = {
             "TableName": "some-table",
             "Item": {
-                "PK": {"S":"resumeProject"}, 
+                "PK": {"S":"resumeProject"},
                 "VisitorCount": {"N":"2"}
             }
         }

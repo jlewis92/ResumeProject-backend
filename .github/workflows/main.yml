@@ -4,7 +4,7 @@ on:
   push:
     branches:
     - main
-    
+
 jobs:
   my_job:
     name: test python and push terraform
@@ -23,8 +23,8 @@ jobs:
       run:
         shell: bash
     steps:
-    - uses: actions/checkout@v3 
-    - uses: hashicorp/setup-terraform@v2.0.3 
+    - uses: actions/checkout@v3
+    - uses: hashicorp/setup-terraform@v2.0.3
     - name: Setup python
       uses: actions/setup-python@v4.5.0
       with:
@@ -40,7 +40,7 @@ jobs:
         aws-region: ${{ secrets.AWS_SECRET_ACCESS_REGION }}
         role-to-assume: arn:aws:iam::${{ secrets.AWS_SECRET_ACCESS_ACCOUNT_ID }}:role/${{ secrets.AWS_SECRET_ACCESS_GITUB_RUNNER_ROLE }}
         role-session-name: GithubActionsSession
-    - run: aws sts get-caller-identity  
+    - run: aws sts get-caller-identity
     - name: Terraform fmt
       id: fmt
       run: terraform fmt -check
@@ -116,10 +116,8 @@ jobs:
               body: output
             })
           }
-          
+
     - name: Terraform Apply
       if: github.event_name != 'pull_request'
       id: apply
       run: terraform plan -no-color
-      
-    

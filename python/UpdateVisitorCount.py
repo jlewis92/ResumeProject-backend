@@ -80,7 +80,7 @@ def lambda_handler(event, context):
 
     # setup dynamo client
     dynamodb_client = getClient(is_aws, region)
-   
+
     # Create the dictionary containing arguments for the update_item call
     update_item_input = create_update_item_input(table_name)
 

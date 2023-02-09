@@ -5,7 +5,7 @@ resource "aws_iam_openid_connect_provider" "githubOidc" {
     "sts.amazonaws.com"
   ]
 
-  thumbprint_list = ["6938fd4d98bab03faadb97b34396831e3780aea1"]
+  thumbprint_list = ["6938fd4d98bab03faadb97b34396831e3780aea1"] # pragma: allowlist secret
 }
 
 data "aws_iam_policy_document" "github_allow" {

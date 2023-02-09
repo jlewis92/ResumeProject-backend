@@ -33,7 +33,7 @@ jobs:
         TF_VAR_account_id: ${{ secrets.AWS_SECRET_ACCESS_ACCOUNT_ID }}
         TF_VAR_table_name: ${{ secrets.AWS_SECRET_ACCESS_TABLE_NAME }}
       run: terraform plan -no-color -input=false
-        working-directory:${{GITHUB_WORKSPACE}}
+        working-directory:${{ github.repository }}
     - run: echo ${{ steps.plan.outputs.stdout }}
     - run: echo ${{ steps.plan.outputs.stderr }}
     - run: echo ${{ steps.plan.outputs.exitcode }}

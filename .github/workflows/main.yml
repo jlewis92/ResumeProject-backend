@@ -1,4 +1,5 @@
 on:
+  pull_request:
   workflow_dispatch:
   push:
     branches:
@@ -7,27 +8,24 @@ on:
 jobs:
   my_job:
     name: test python and push terraform
+    env:
+      TF_VAR_region: ${{ secrets.AWS_SECRET_ACCESS_REGION }}
+      TF_VAR_account_id: ${{ secrets.AWS_SECRET_ACCESS_ACCOUNT_ID }}
+      TF_VAR_table_name: ${{ secrets.AWS_SECRET_ACCESS_TABLE_NAME }}
     permissions:
       id-token: write
       contents: write
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3 
+    - uses: hashicorp/setup-terraform@v2.0.3  
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@master
       with:
         aws-region: ${{ secrets.AWS_SECRET_ACCESS_REGION }}
         role-to-assume: arn:aws:iam::${{ secrets.AWS_SECRET_ACCESS_ACCOUNT_ID }}:role/${{ secrets.AWS_SECRET_ACCESS_GITUB_RUNNER_ROLE }}
         role-session-name: GithubActionsSession
-    - run: aws sts get-caller-identity
-    - name: Setup terraform
-      env:
-        TF_VAR_region: ${{ secrets.AWS_SECRET_ACCESS_REGION }}
-        TF_VAR_account_id: ${{ secrets.AWS_SECRET_ACCESS_ACCOUNT_ID }}
-        TF_VAR_table_name: ${{ secrets.AWS_SECRET_ACCESS_TABLE_NAME }}
-      uses: hashicorp/setup-terraform@v2.0.3   
-      with:
-        terraform_wrapper: true
+    - run: aws sts get-caller-identity  
     - name: Terraform fmt
       id: fmt
       run: terraform fmt -check

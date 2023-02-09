@@ -7,11 +7,13 @@ on:
 jobs:
   my_job:
     name: test python and push terraform
+    defaults:
+      run:
+        working-directory: ${{ env.tf_actions_working_dir }}
     permissions:
       id-token: write
       contents: write
     runs-on: windows-latest
-    
     steps:
     - uses: actions/checkout@v2
     - name: Configure AWS Credentials

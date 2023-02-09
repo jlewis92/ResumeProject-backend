@@ -18,7 +18,7 @@ jobs:
       uses: aws-actions/configure-aws-credentials@master
       with:
         aws-region: ${{ secrets.AWS_SECRET_ACCESS_REGION }}
-        role-to-assume: arn:aws:iam::${{ secrets.AWS_SECRET_ACCESS_REGION }}:role/${{ secrets.AWS_SECRET_ACCESS_GITUB_RUNNER_ROLE }}
+        role-to-assume: arn:aws:iam::${{ secrets.AWS_SECRET_ACCESS_ACCOUNT_ID }}:role/${{ secrets.AWS_SECRET_ACCESS_GITUB_RUNNER_ROLE }}
         role-session-name: GithubActionsSession
 
     - run: aws sts get-caller-identity

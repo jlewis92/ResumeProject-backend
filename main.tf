@@ -17,5 +17,5 @@ variable "table_name" {
 }
 
 provider "aws" {
-  region  = var.region
+  region = var.region
 }

@@ -33,7 +33,7 @@ jobs:
     - name: Install dependencies
       run: python -m pip install --upgrade pip boto3 moto
     - name: Run python tests
-      run: python .\python\test_UpdateVisitorCount.py
+      run: python python/test_UpdateVisitorCount.py
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@master
       with:

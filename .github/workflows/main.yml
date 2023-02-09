@@ -24,7 +24,16 @@ jobs:
         shell: bash
     steps:
     - uses: actions/checkout@v3 
-    - uses: hashicorp/setup-terraform@v2.0.3  
+    - uses: hashicorp/setup-terraform@v2.0.3 
+    - name: Setup python
+      uses: actions/setup-python@v4.5.0
+      with:
+        python-version: 3.8
+        cache: 'pip' # caching pip dependencies
+    - name: Install dependencies
+      run: python -m pip install --upgrade pip boto3 moto
+    - name: Run python tests
+      run: python .\python\test_UpdateVisitorCount.py
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@master
       with:
@@ -109,7 +118,7 @@ jobs:
           }
           
     - name: Terraform Apply
-      if: github.ref == 'refs/heads/master'
+      if: github.event_name != 'pull_request'
       id: apply
       run: terraform plan -no-color
       

@@ -109,7 +109,7 @@ jobs:
           }
           
     - name: Terraform Apply
-      if: github.event_name == 'main'
+      if: github.ref == 'refs/heads/master'
       id: apply
       run: terraform plan -no-color
       

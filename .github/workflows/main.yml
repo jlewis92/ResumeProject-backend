@@ -26,7 +26,7 @@ jobs:
         TF_VAR_account_id: ${{ secrets.AWS_SECRET_ACCESS_ACCOUNT_ID }}
         TF_VAR_table_name: ${{ secrets.AWS_SECRET_ACCESS_TABLE_NAME }}
       uses: hashicorp/setup-terraform@v2.0.3    
-    - run: terraform init
+    - run: terraform init -input=false
     - id: plan
       env:
         TF_VAR_region: ${{ secrets.AWS_SECRET_ACCESS_REGION }}

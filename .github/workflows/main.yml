@@ -9,7 +9,7 @@ jobs:
     name: test python and push terraform
     defaults:
       run:
-        working-directory: ${{ env.tf_actions_working_dir }}
+        working-directory: ${GITHUB_WORKSPACE}
     permissions:
       id-token: write
       contents: write

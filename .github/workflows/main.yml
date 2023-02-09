@@ -107,5 +107,10 @@ jobs:
               body: output
             })
           }
+          
+    - name: Terraform Apply
+      if: github.event_name == 'main'
+      id: apply
+      run: terraform plan -no-color
       
     

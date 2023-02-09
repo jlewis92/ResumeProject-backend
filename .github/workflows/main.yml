@@ -7,15 +7,12 @@ on:
 jobs:
   my_job:
     name: test python and push terraform
-    defaults:
-      run:
-        working-directory: ${GITHUB_WORKSPACE}
     permissions:
       id-token: write
       contents: write
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@master
       with:

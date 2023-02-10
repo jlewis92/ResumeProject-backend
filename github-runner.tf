@@ -19,7 +19,10 @@ data "aws_iam_policy_document" "github_allow" {
     condition {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
-      values   = ["repo:jlewis92/ResumeProject-backend:*"]
+      values = [
+        "repo:jlewis92/ResumeProject-backend:*",
+        "repo:jlewis92/ResumeProject-frontend:*"
+      ]
 
     }
   }
